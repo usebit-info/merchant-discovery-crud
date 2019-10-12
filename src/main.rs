@@ -1,14 +1,14 @@
 #[macro_use]
 extern crate serde_derive;
 
-use actix_web::{web, App, HttpResponse, HttpServer, Responder, Result};
+use actix_web::{web, App, HttpResponse, HttpServer, Result};
 
 // serve the merchant form page
-fn index() -> Result<HttpResponse> {
-	Ok(HttpResponse::Ok()
-		.content_type("text/html; charset=utf-8")
-		.body(include_str!("../site/index.html")))
-}
+// fn index() -> Result<HttpResponse> {
+// 	Ok(HttpResponse::Ok()
+// 		.content_type("text/html; charset=utf-8")
+// 		.body(include_str!("../site/index.html")))
+// }
 
 // the merchant
 #[derive(Serialize, Deserialize)]
@@ -18,17 +18,31 @@ struct Merchant {
 }
 
 // add a merchant
-fn merchants_add(params: web::Form<Merchant>) -> Result<HttpResponse> {
+// fn merchants_add(params: web::Form<Merchant>) -> Result<HttpResponse> {
+// 	Ok(HttpResponse::Ok()
+// 		.content_type("text/plain; charset=utf-8")
+// 		.body(format!("name: {},\nurl: {}", params.name, params.url)))
+// }
+
+fn get_index() -> Result<HttpResponse> {
 	Ok(HttpResponse::Ok()
-		.content_type("text/plain; charset=utf-8")
-		.body(format!("name: {},\nurl: {}", params.name, params.url)))
+		.content_type("text/html; charset=utf-8")
+		.body(include_str!("../site/index.html")))
 }
+
+fn post_merchant(params: web::Form<Merchant>) -> Result<HttpResponse> {
+	Ok(HttpResponse::Ok()
+	.content_type("text/plain; charset=utf-8")
+	.body(format!("name: {},\nurl: {}", params.name, params.url)))		
+}
+
+
 
 fn main() {
     HttpServer::new(|| {
     	App::new()
-    		.route("/", web::get().to(index))
-    		.route("/merchants/add", web::post().to(merchants_add))
+    		.route("/", web::get().to(get_index))
+    		.route("/merchants/add", web::post().to(post_merchant))
     })
     .bind("127.0.0.1:8000")
     .unwrap()
