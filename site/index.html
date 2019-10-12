@@ -1,0 +1,38 @@
+<!Doctype html><!DOCTYPE html>
+<html>
+<head>
+	<title>UBI Merchant Discovery</title>
+</head>
+<body>
+	<form action="/merchants/add" method="POST">
+		<legend>Add a Merchant</legend>
+		<div>
+			<label for="url">Url:</label>
+			<input type="text" name="url" required>
+		</div>
+		<div>
+			<label for="name">Name:</label>
+			<input type="text" name="name" required>
+		</div>
+		<div>
+			<p>Type:</p>
+			<input type="radio" name="type1" value="individual">Individual<br>
+			<input type="radio" name="type2" value="business">Business<br>
+			<input type="radio" name="type3" value="organization">Organization<br>
+			<input type="radio" name="type4" value="government">Government<br>
+			<input type="radio" name="type5" value="unknown">Unknown<br>
+		</div>
+		<div>
+			<p>Industry:</p>
+			<input type="checkbox" name="industry1" value="software">Software<br>
+			<input type="checkbox" name="industry2" value="hardware">Hardware<br>
+			<input type="checkbox" name="industry3" value="education">Education<br>
+			<input type="checkbox" name="industry4" value="medical">Medical<br>
+			<input type="checkbox" name="industry5" value="agricultural">Agricultural<br>
+		</div>
+		<div>
+			<input type="submit" value="Submit">
+		</div>
+	</form>
+</body>
+</html>
