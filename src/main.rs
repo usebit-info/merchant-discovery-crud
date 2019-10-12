@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate serde_derive;
 
-use actix_web::{web, App, HttpResponse, HttpServer, Responder, Result};
+use actix_web::{web, App, HttpResponse, HttpServer, Result};
 
 // serve the merchant form page
 fn index() -> Result<HttpResponse> {
