@@ -22,14 +22,7 @@ fn post_merchant(params: web::Form<Merchant>) -> Result<HttpResponse> {
 	.body(format!("name: {},\nurl: {}", params.name, params.url)))		
 }
 
-fn get_all_merchants(merchants: web::Data<Vec<Merchant>>) -> Result<HttpResponse> {
-	
-	// let mut mrch: String;
-
-	// for merchant in merchants {
-	// 	mrch.append(format!("{:?}", merchant))
-	// }
-
+fn get_all_merchants() -> Result<HttpResponse> {
 	Ok(HttpResponse::Ok()
 		.content_type("text/plain; charset=utf-8")
 		.body(""))
@@ -43,6 +36,7 @@ fn main() {
     	App::new()
     		.route("/", web::get().to(get_index))
     		.route("/merch/add", web::post().to(post_merchant))
+    		.route("/merch/all", web::get().to(get_all_merchants))
     })
     .bind("127.0.0.1:8000")
     .unwrap()
